@@ -12,10 +12,15 @@ TEXS := $(wildcard *.tex)
 PDFS := $(TEXS:.tex=.pdf)
 
 ## Project Rules
+mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
+ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
 .PHONY : FORCE_MAKE
 # build: $(PDFS) FORCE_MAKE
 build: FORCE_MAKE
+	@echo $(ROOT_DIR)
+	cp build/hamsternik.compact.pdf $(ROOT_DIR)/../public
+	cp build/hamsternik.cv.pdf $(ROOT_DIR)/../public
 	$(LATEXMK) $(LATEXMK_FLAGS) $(LATEXMK_FLAGS_BUILD) hamsternik.compact.tex
 
 %.pdf: %.tex hamsternik.cv.cls
