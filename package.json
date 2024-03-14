@@ -11,7 +11,7 @@
 	},
 	"engines": {
 		"node": ">=18.14.1"
-	  },
+	},
 	"dependencies": {
 		"@astrojs/check": "^0.5.9",
 		"@astrojs/mdx": "^2.2.0",
@@ -23,6 +23,7 @@
 		"typescript": "^5.4.2"
 	},
 	"devDependencies": {
-		"pettier": "3.2.5"
+		"prettier": "^3.2.5",
+		"prettier-plugin-astro": "^0.13.0"
 	}
 }
