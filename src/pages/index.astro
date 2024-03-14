@@ -1,0 +1,45 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<!-- <Header /> -->
+		<main>
+			<h1>Ni(kita) Khomitsevych</h1>
+			<p>
+				Software engineer with 8+ years of engineering (iOS, macOS, Web Frontend, Full-Stack) in
+				complex projects and distributed software development teams. Have an entrepreneur- ship
+				mindset working in different areas such as IoT, Healthcare, Health & Fitness, Social, and
+				FinTech. Served as team lead (mobile, cross-functional teams) and architect for the last 5
+				years.
+			</p>
+			<p>
+				Here is <a href="cv.compact.pdf">the resume (compact version)</a> and its longer and
+				<a href="cv.full.pdf">boring version</a>
+			</p>
+			<ul class="list-disc">
+				<li>
+					Email: <a href="mailto:hamsternik9@gmail.com">hamsternik9@gmail.com</a>
+				</li>
+				<li>
+					GitHub: <a href="http://github.com/hamsternik">github.com/hamsternik</a>
+				</li>
+				<li>
+					LinkedIn: <a href="https://www.linkedin.com/in/khomitsevych/">Nikita Khomitsevych</a>
+				</li>
+				<li>
+					Telegram: <a href="https://t.me/hamsternik">@hamsternik</a>
+				</li>
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>

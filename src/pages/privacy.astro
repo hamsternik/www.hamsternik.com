@@ -1,0 +1,38 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import Layout from '../layouts/BlogPost.astro';
+---
+
+<!-- <Layout title="Privacy Policy" description="" pubDate={new Date('March 14 2024')}> -->
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<main>
+			<section>
+				<h3>JavaScript</h3>
+				<p>Optional.</p>
+			</section>
+			<section>
+				<h3>Analytics</h3>
+				<p>No analytics.</p>
+			</section>
+
+			<section>
+				<h3>Cookies</h3>
+				<p>No cookies usage.</p>
+			</section>
+
+			<section>
+				<h3>Source</h3>
+				<p>
+					You can find the website's source code on <a
+						href="https://github.com/hamsternik/www.hamsternik.com">GitHub</a
+					>
+				</p>
+			</section>
+		</main>
+	</body><!-- </Layout> -->
+</html>
