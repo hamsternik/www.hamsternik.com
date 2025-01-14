@@ -29,8 +29,16 @@ build: FORCE_MAKE
 
 update: clean build version
 
+# The DEPENDS.txt file is not a standard feature of TeX/LaTeX ecosystem but is instead a custom convention 
+# often used in collaborative or automated build systems to list dependencies required to compile 
+# the document successfully. 
+# Before DEPENDS.txt the requirements.txt has been used. Check out potential issues with that approach: 
+# https://tex.stackexchange.com/q/528069.
+# The 'cv' package contains only hard dependencies to install.
 install:
-	sudo tlmgr install `head -1 requirements.txt`
+	@sudo tlmgr option repository ctan
+	@sudo tlmgr --verify-repo=none update --self
+	sudo tlmgr install $(shell cut -w -f 2 "$(shell pwd)/DEPENDS.txt" | uniq)	
 
 clean:
 	$(LATEXMK) $(LATEXMK_FLAGS) $(LATEXMK_FLAGS_CLEAN)

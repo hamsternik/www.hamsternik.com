@@ -1,0 +1,13 @@
+hard latexmk # automates the process of generating a LATEX document
+hard chktex # reports typographic and other errors in LATEX documents
+hard lacheck # a tool for finding common mistakes in LATEX documents
+hard xcolor 
+hard geometry 
+hard pgf 
+hard textpos 
+hard fancyhdr 
+hard setspace 
+hard enumitem 
+hard ulem 
+hard hyperref 
+hard href-ul
