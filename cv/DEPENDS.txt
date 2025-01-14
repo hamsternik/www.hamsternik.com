@@ -4,6 +4,7 @@ hard lacheck # a tool for finding common mistakes in LATEX documents
 hard xcolor 
 hard geometry 
 hard pgf 
+hard pgfopts
 hard textpos 
 hard fancyhdr 
 hard setspace 
@@ -11,3 +12,5 @@ hard enumitem
 hard ulem 
 hard hyperref 
 hard href-ul
+hard blindtext
+hard sectsty

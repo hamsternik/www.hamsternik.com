@@ -1,10 +1,11 @@
 .SHELLFLAGS = -e -o pipefail -c
 
-VERSION := 1.2.1
+VERSION := 1.2.2
 
-LATEXMK := latexmk # man (https://mirrors.up.pt/pub/CTAN/support/latexmk/latexmk.pdf)
-LATEXMK_FLAGS := -quiet -output-directory="build" -f
-LATEXMK_FLAGS_BUILD := -recorder -use-make -pdf # -pdf argument use `pdflatex` by default, so do not need to use -pdflatex arg. explicitly
+BUILD_OUTPUT_NAME := niki.khomitsevych
+LATEXMK := latexmk # latexmk --help OR https://mirrors.up.pt/pub/CTAN/support/latexmk/latexmk.pdf
+#latexmk -verbose -jobname="niki.khomitsevych" -output-directory="build" -pdf main.tex
+LATEXMK_FLAGS := -verbose -jobname="niki.khomitsevych" -output-directory="build" -use-make -pdf # -f to force continued processing past errors 
 LATEXMK_FLAGS_CLEAN := -C # to clean all without pdf output use `-c` instead
 
 # `wildcard` build-in function replaced by a space-separated list of names of existing files that match one of the given file name patterns
@@ -16,18 +17,11 @@ mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
 .PHONY : FORCE_MAKE
-# build: $(PDFS) FORCE_MAKE
-build: FORCE_MAKE
-	@echo $(ROOT_DIR)
-	cp build/hamsternik.compact.pdf $(ROOT_DIR)/../public
-	cp build/hamsternik.cv.pdf $(ROOT_DIR)/../public
-	$(LATEXMK) $(LATEXMK_FLAGS) $(LATEXMK_FLAGS_BUILD) hamsternik.compact.tex
-
-%.pdf: %.tex hamsternik.cv.cls
-	@echo Compiling $* file right now...
-	$(LATEXMK) $(LATEXMK_FLAGS) $(LATEXMK_FLAGS_BUILD)
-
-update: clean build version
+build: FORCE_MAKE clean
+	@echo "🦠 The root dir: $(ROOT_DIR)"
+	$(LATEXMK) $(LATEXMK_FLAGS) main.tex
+	@echo "🦠Coping output PDF to the /public dir."
+	@cp build/$(BUILD_OUTPUT_NAME).pdf $(ROOT_DIR)/../public/cv
 
 # The DEPENDS.txt file is not a standard feature of TeX/LaTeX ecosystem but is instead a custom convention 
 # often used in collaborative or automated build systems to list dependencies required to compile 
@@ -40,8 +34,15 @@ install:
 	@sudo tlmgr --verify-repo=none update --self
 	sudo tlmgr install $(shell cut -w -f 2 "$(shell pwd)/DEPENDS.txt" | uniq)	
 
+# WIP FIXME: To install project dependencies rely on the install target.
+# Use --usermode to run tlmgr without sudo. 
+install2:
+	@tlmgr --usermode option repository ctan
+	tlmgr --usermode install $(shell cut -w -f 2 "$(shell pwd)/DEPENDS.txt" | uniq)	
+
 clean:
 	$(LATEXMK) $(LATEXMK_FLAGS) $(LATEXMK_FLAGS_CLEAN)
+	@if [[ -d "build" ]]; then rm -rf build; fi
 
 ## Package Rules
 
