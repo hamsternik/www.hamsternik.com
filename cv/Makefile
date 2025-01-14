@@ -4,9 +4,12 @@ VERSION := 1.2.2
 
 BUILD_OUTPUT_NAME := niki.khomitsevych
 LATEXMK := latexmk # latexmk --help OR https://mirrors.up.pt/pub/CTAN/support/latexmk/latexmk.pdf
-#latexmk -verbose -jobname="niki.khomitsevych" -output-directory="build" -pdf main.tex
 LATEXMK_FLAGS := -verbose -jobname="niki.khomitsevych" -output-directory="build" -use-make -pdf # -f to force continued processing past errors 
 LATEXMK_FLAGS_CLEAN := -C # to clean all without pdf output use `-c` instead
+
+# TeX typesetting engine using Unicode and supporting modern font technologies such as Apple Advanced Typography.
+# WIP FIXME: Migrate to xelatex as there no need to use extra flags eg. -pdf
+XELATEX := xelatex 
 
 # `wildcard` build-in function replaced by a space-separated list of names of existing files that match one of the given file name patterns
 TEXS := $(wildcard *.tex)
