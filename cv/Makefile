@@ -1,6 +1,6 @@
 .SHELLFLAGS = -e -o pipefail -c
 
-VERSION := 1.2.2
+VERSION := 2.0.0
 
 BUILD_OUTPUT_NAME := niki.khomitsevych
 LATEXMK := latexmk # latexmk --help OR https://mirrors.up.pt/pub/CTAN/support/latexmk/latexmk.pdf
@@ -18,6 +18,9 @@ PDFS := $(TEXS:.tex=.pdf)
 ## Project Rules
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+
+watch:
+	@watch --color -n1 'test main.tex -nt build/niki.khomitsevych.pdf && make build'
 
 .PHONY : FORCE_MAKE
 build: FORCE_MAKE clean

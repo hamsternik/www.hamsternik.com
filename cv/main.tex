@@ -1,9 +1,7 @@
-% TODO: use [cv-latex-guide](https://latex-tutorial.com/cv-latex-guide/) to build anothe (simpler) version of my resume.
-% Also check out [Alex Zverev CV](https://drive.google.com/file/d/1dce28zy8RqS2O_27oj1rTYiZoFWZ3-Ot/view) as example similar to the guide up above.
-% Use approach like @yegor256 did - 2 versions of CV: complete (or boring) and compact one
-% @yegor256 cv: https://github.com/yegor256/blog/blob/master/_latex/resume-boring.tex
+%% See the @yegor256 resume, boring version: https://github.com/yegor256/blog/blob/master/_latex/resume-boring.tex.
+% See the Alex Zverev resume (PDF): https://drive.google.com/file/d/1dce28zy8RqS2O_27oj1rTYiZoFWZ3-Ot/view.
 
-\documentclass[12pt]{article}
+\documentclass[10pt]{article}
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{xcolor}
@@ -19,7 +17,7 @@
     a4paper,
     left=20mm,
     %rigth=
-    %bottom=
+    bottom=15mm,
     top=15mm
 }
 
@@ -94,43 +92,59 @@
 
 \begin{document}
 
-\textsc{\huge{Ni Khomitsevych}}
-% \name{Nikita Khomitsevych1}
+\textsc{\huge{Nikita Khomitsevych}}
 
 \SectionSpacing
 
 \noindent
 \href{mailto:hamsternik9@gmail.com}{hamsternik9@gmail.com} \text{\textbar}
 \href{https://github.com/hamsternik}{github.com/hamsternik} \text{\textbar}
-\href{https://www.linkedin.com/in/khomitsevych/}{linkedin.com/in/khomitsevych}
+\href{https://www.linkedin.com/in/nkhomitsevych/}{linkedin.com/in/nkhomitsevych}
 
 \SectionSpacing
 
 \noindent
-Software engineer with 8+ years of engineering (iOS, macOS, Web Frontend, Full-Stack) in complex projects and distributed software development teams. 
-Have an entrepreneurship mindset working in different areas such as IoT, Healthcare, Health \& Fitness, Social, and FinTech.
-Served as team lead (mobile, cross-functional teams) and architect for the last 5 years.
+Software engineer with over 10 years of experience in developing software for Apple platforms (iOS, macOS, tvOS) and the frontend of web applications (React, Next).
+For the past 5 years, I have exclusively worked in distributed software development teams. 
+I have served as a team lead or as a software architect across various mobile and cross-functional projects. 
+My primary areas of expertise include FinTech, Social, Healthcare, and Health \& Fitness.
 
 %% Experience
 
 \subsection*{Experience}
 
 \Experience
-{Software Engineer (iOS, macOS, Full-Stack), Founder}
-{Dec 2023 -- Present}
-{\href{finitetimespace.com}{Finite Timespace LLC}}
+{Senior iOS Engineer}
+{Jul 2024 -- Jan 2025}
+{\href{https://www.loblawdigital.co}{Loblaw Digital}}
 
 \noindent
 \begin{itemize}[label=-]
-    \setlength\itemsep{0cm}
-    \item Responsible for providing hands on engineering and consulting for businesses and startups.
+  \setlength\itemsep{0cm}
+  \item Built a new \textbf{subscription mechanism for physical products} in stores, enabling users to subscribe to products they order consistently without needing to reorder manually each time.
+  \item Developed the knowledge base for the iOS team using Coda.io, creating \textbf{dozens of internal documents} to structure the iOS app architecture by layers. 
+  \item Led a technical proposal to introduce the \textbf{Single Responsibility Principle (SOLID)} by extending the MVVM architecture with the “UseCase” layer, streamlining unit test creation. 
 \end{itemize}
 
 \SubSectionSpacing
 
 \Experience
-{Founding iOS Engineer}
-{Jan 2023 -- Nov 2023}
+{Software Engineer, Founder}
+{Dec 2023 -- Present}
+{\href{https://finitetimespace.com}{Finite Timespace LLC}}
+
+\noindent
+\begin{itemize}[label=-]
+    \setlength\itemsep{0cm}
+    \item Responsible for providing hands on engineering and consulting for businesses and startups. 
+      Main areas are Apple platforms (iOS, macOS, tvOS) and web (frontend) applications (React, Next).
+\end{itemize}
+
+\SubSectionSpacing
+
+\Experience
+{Founding Software Engineer}
+{Jan 2023 -- Present}
 {\href{https://www.wurthy.co}{Wurthy} (US platform of making P2P payments over time)}
 
 \noindent
@@ -153,10 +167,10 @@ Served as team lead (mobile, cross-functional teams) and architect for the last 
 \begin{itemize}[label=-]
     \setlength\itemsep{0em}
     \item Developed the front-end part of the \href{https://taki.app}{taki.app}. 
-    Tech stack comprises TypeScript, React, Next.js, GCP, Firebase and Firestore.
+      Technologies included TypeScript, React, Next.js, GCP, Firebase and Firestore.
     \item Leaded the development of the \href{https://apps.apple.com/in/app/notiblast/id6443910263}{Notiblast} macOS application.
-    App's goal is to remind about the upcoming meeting in your Google calendar, blasting upfront on your screen.
-    Tech stack comprises Swift, SwiftUI / AppKit, Combine and XCTests.
+      App's goal is to remind about the upcoming meeting in your Google calendar, blasting upfront on your screen. 
+      Technologies included Swift, SwiftUI / AppKit, Combine and XCTests.
 \end{itemize}
 
 \SubSectionSpacing
@@ -169,11 +183,10 @@ Served as team lead (mobile, cross-functional teams) and architect for the last 
 \noindent
 \begin{itemize}[label=-]
     \setlength\itemsep{0em}
-    \item Worked on major product parts of the Life360 iOS application (30+ million MAU, end of Q1 2022). 
-    \item Developed Lead Generation feature to provide specific offers for customers from auto insurance companies. 
-    Managed a \textbf{team of 4 mobile developers (Android and iOS)}, tackling requirements processing, delivery responsibilities and people management. 
-    \item Developed user's driving experience workflow, created brand new \textit{Driving} tab, including weekly driver report to see driving statistics and promote safe driving.
-    \item Technologies included Swift, UIKit, RxSwift, Uber RIBs, XCTests, Fastlane etc.
+    \item Managed a \textbf{team of 4 mobile developers (Android and iOS)}, tackling requirements processing, delivery responsibilities and people management. 
+    \item Developed Lead Generation feature to provide specific offers for customers from auto insurance companies (30+ million MAU, end of Q1 2022).
+    \item Developed user's driving experience workflow, created brand new \textit{Driving} tab to see driving statistics and promote safe driving. 
+      Technologies included Swift, UIKit, RxSwift, Uber RIBs, XCTests.
 \end{itemize}
 
 \SubSectionSpacing
@@ -186,15 +199,10 @@ Served as team lead (mobile, cross-functional teams) and architect for the last 
 \noindent
 \begin{itemize}[label=-]
     \setlength\itemsep{0em}
-    \item Developed and supported \href{https://www.raywenderlich.com/books/advanced-ios-app-architecture/v3.0/chapters/6-architecture-redux}{Redux architecture} on most of our apps. 
-    \item Developed brand new version of \textit{BetterMe: Weight Loss Workouts} iOS application getting away from VIPER to the Redux. 
-    \item Developed bunch of Ruby scripts using Fastlane as a primary tool for a daily work tasks automatization.
+    \item Most of my contributions were in the \href{https://apps.apple.com/us/app/betterme-weight-loss-workouts/id1264546236}{Health Coaching} and \href{https://apps.apple.com/us/app/betterme-calm-sleep-meditate/id1363010081}{Mental Health} apps including building both apps from scratch using the Redux architecture. 
+      I also rewrote the entire BetterMe: Weight Loss Workouts app, transitioning it from VIPER to Redux.
+    \item Developed a series of Fastlane scripts on Ruby to build an automated CI/CD pipeline, such as uploading new strings for localization in over 10 languages.
 \end{itemize}
-
-\noindent Top-3 applications with my contribution: 
-\href{https://apps.apple.com/us/app/betterme-weight-loss-workouts/id1264546236}{Health Coaching}, 
-\href{https://apps.apple.com/us/app/betterme-calm-sleep-meditate/id1363010081}{Mental Health}, 
-\href{https://apps.apple.com/us/app/betterme-walking-weightloss/id1434400695}{Walking Workouts}.
 
 \SubSectionSpacing
 
@@ -208,18 +216,8 @@ Served as team lead (mobile, cross-functional teams) and architect for the last 
 \begin{itemize}[label=-]
     \setlength\itemsep{0em}
     \item Developer iOS applications for manufactored FDA cleared device for remote nonstress tests for pregnant to monitor real-time health indicators.
-    \item Architectured and developed a separated SDK to deal with device via Bluetooth Classic. 
-    Supported FDA and MFi device certification from engineering side.
-    \item Technologies included Swift, UIKit, RxSwift, VIPER, Bluetooth Classic, Unit Tests (Quick, Nimble).
-\end{itemize}
-
-\noindent Project: \href{https://www.sensynehealth.com/cleanspace}{CleanSpace application}.
-\noindent
-\begin{itemize}[label=-]
-    \setlength\itemsep{0em}
-    \item Worked on iOS SDK for CleanSpace application.
-    \item Provided a full cycle of application development, inclduing architecture planning, development cycle and end-to-end testing.
-    \item Developed third-party frameworks from scratch for next integration on the iOS application.
+    \item Architectured and developed a separated SDK to deal with device via Bluetooth Classic. Supported FDA and MFi device certification from engineering side.
+    \item The application was designed to scale in mind using VIPER design pattern and BDD testing approach (Quick, Nimble).
 \end{itemize}
 
 %% Projects
@@ -231,12 +229,10 @@ Served as team lead (mobile, cross-functional teams) and architect for the last 
 {Feb 2021 -- May 2021}
 {\href{https://github.com/hamsternik/robotdreams-ios-course}{hamsternik/robotdreams-ios-course}}
 
-\noindent Created and tought the group of 12 people. 
-The course contains 20 lectures and the final assessment described requirements to follow and suggested theme to implement.
-Course aims to cover multiple topics necessary for iOS developer:
-Swift basics (e.g. variables, types, functions, classes, protocols etc), iOS frameworks (UIKit, Core Animation), 
-memory management, concurrency (GCD), key-value data storage, network, development tools etc.
-The goal of the course was to prepare students without computer science degree or any programming skills to the \textit{junior iOS developer} job position.
+\noindent Created and taught a group of 12 students. 
+The course included 20 lectures and a final assessment that outlined the requirements to follow and suggested thems for implementation. 
+The course aimed to cover essential topics for iOS development, including Swift language fundamentals, memory management, UIKit iOS framework, concurrency (GCD) and networking basics.
+The goal of the course was to prepare individuals without a computer science degree or prior programming experience for a \textit{junior iOS developer} position.
 
 %% Education
 
@@ -247,4 +243,4 @@ The goal of the course was to prepare students without computer science degree o
 {2013--2018}
 {\href{https://kpi.ua/en}{Igor Sikorsky Kyiv Polytechnic Institute}, Biomedical Engineering Department}
 
-\end{document}work
+\end{document}
