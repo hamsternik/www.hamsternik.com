@@ -1,45 +1,54 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_DESCRIPTION } from "../consts";
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<!-- <Header /> -->
-		<main>
-			<h1>Ni(kita) Khomitsevych</h1>
-			<p>
-				Software engineer with 8+ years of engineering (iOS, macOS, Web Frontend, Full-Stack) in
-				complex projects and distributed software development teams. Have an entrepreneur- ship
-				mindset working in different areas such as IoT, Healthcare, Health & Fitness, Social, and
-				FinTech. Served as team lead (mobile, cross-functional teams) and architect for the last 5
-				years.
-			</p>
-			<p>
-				Here is <a href="hamsternik.compact.pdf">the resume (compact version)</a> and its longer and
-				<a href="hamsternik.cv.pdf">boring version</a>
-			</p>
-			<ul class="list-disc">
-				<li>
-					Email: <a href="mailto:hamsternik9@gmail.com">hamsternik9@gmail.com</a>
-				</li>
-				<li>
-					GitHub: <a href="http://github.com/hamsternik">github.com/hamsternik</a>
-				</li>
-				<li>
-					LinkedIn: <a href="https://www.linkedin.com/in/khomitsevych/">Nikita Khomitsevych</a>
-				</li>
-				<li>
-					Telegram: <a href="https://t.me/hamsternik">@hamsternik</a>
-				</li>
-			</ul>
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <BaseHead
+      title={"Niki's Blog About Programming and Career Advising"}
+      description={SITE_DESCRIPTION}
+    />
+  </head>
+  <body>
+    <!-- <Header /> -->
+    <main>
+      <h1>Niki Khomitsevych</h1>
+      <p>
+        Software engineer with over 10 years of experience in developing
+        software for Apple platforms (iOS, macOS, tvOS) and the frontend of web
+        applications (React, Next). For the past 5 years, I have exclusively
+        worked in distributed software development teams. I have served as a
+        team lead or as a software architect across various mobile and
+        cross-functional projects. My primary areas of expertise include
+        FinTech, Social, Healthcare, and Health &amp; Fitness.
+      </p>
+      <p>
+        Here is my <a href="niki.khomitsevych.pdf">resume</a>.
+      </p>
+      <ul class="list-disc">
+        <li>
+          Email: <a href="mailto:hamsternik9@gmail.com">hamsternik9@gmail.com</a
+          >
+        </li>
+        <li>
+          GitHub: <a href="http://github.com/hamsternik"
+            >github.com/hamsternik</a
+          >
+        </li>
+        <li>
+          LinkedIn: <a href="https://www.linkedin.com/in/nkhomitsevych/"
+            >Nikita Khomitsevych</a
+          >
+        </li>
+        <li>
+          Telegram: <a href="https://t.me/hamsternik">@hamsternik</a>
+        </li>
+      </ul>
+    </main>
+    <!-- <Footer /> -->
+  </body>
 </html>
