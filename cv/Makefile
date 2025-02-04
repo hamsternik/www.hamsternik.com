@@ -27,7 +27,7 @@ build: FORCE_MAKE clean
 	@echo "🦠 The root dir: $(ROOT_DIR)"
 	$(LATEXMK) $(LATEXMK_FLAGS) main.tex
 	@echo "🦠Coping output PDF to the /public dir."
-	@cp build/$(BUILD_OUTPUT_NAME).pdf $(ROOT_DIR)/../public/cv
+	@cp build/$(BUILD_OUTPUT_NAME).pdf $(ROOT_DIR)/../public
 
 # The DEPENDS.txt file is not a standard feature of TeX/LaTeX ecosystem but is instead a custom convention 
 # often used in collaborative or automated build systems to list dependencies required to compile 
