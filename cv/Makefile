@@ -19,6 +19,9 @@ PDFS := $(TEXS:.tex=.pdf)
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
+help:
+	@cat Makefile
+
 watch:
 	@watch --color -n1 'test main.tex -nt build/niki.khomitsevych.pdf && make build'
 
@@ -58,5 +61,3 @@ lacheck:
 version:
 	@echo "resume version $(VERSION)"
 
-help:
-	@cat Makefile
