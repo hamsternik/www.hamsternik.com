@@ -1,6 +1,8 @@
-<img src="img/1.2.0.png" width="640">
+<img src=".github/2.1.2.png" width="1280">
 
-Install packages necessary to compile the .tex files:
+## How to build?
+
+First, install packages necessary to compile the .tex files:
 
 ```bash
 make install
