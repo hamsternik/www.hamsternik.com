@@ -1,10 +1,10 @@
 .SHELLFLAGS = -e -o pipefail -c
 
-VERSION := 2.1.2
+VERSION := 2025.10.1
 
-BUILD_OUTPUT_NAME := niki.khomitsevych
+BUILD_OUTPUT_NAME := nikita.khomitsevych.$(VERSION)
 LATEXMK := latexmk # latexmk --help OR https://mirrors.up.pt/pub/CTAN/support/latexmk/latexmk.pdf
-LATEXMK_FLAGS := -verbose -jobname="niki.khomitsevych" -output-directory="build" -use-make -pdf # -f to force continued processing past errors 
+LATEXMK_FLAGS := -verbose -jobname="$(BUILD_OUTPUT_NAME)" -output-directory="build" -use-make -pdf # -f to force continued processing past errors 
 LATEXMK_FLAGS_CLEAN := -C # to clean all without pdf output use `-c` instead
 
 # TeX typesetting engine using Unicode and supporting modern font technologies such as Apple Advanced Typography.
@@ -23,14 +23,14 @@ help:
 	@cat Makefile
 
 watch:
-	@watch --color -n1 'test main.tex -nt build/niki.khomitsevych.pdf && make build'
+	@watch --color -n1 'test main.tex -nt build/$(BUILD_OUTPUT_NAME).pdf && make build'
 
 .PHONY : FORCE_MAKE
 build: FORCE_MAKE clean
 	@echo "🦠 The root dir: $(ROOT_DIR)"
 	$(LATEXMK) $(LATEXMK_FLAGS) main.tex
 	@echo "🦠Coping output PDF to the /public dir."
-	@cp build/$(BUILD_OUTPUT_NAME).pdf $(ROOT_DIR)/../public
+	cp build/$(BUILD_OUTPUT_NAME).pdf $(ROOT_DIR)/../public/nkhomitsevych.resume.pdf
 
 # The DEPENDS.txt file is not a standard feature of TeX/LaTeX ecosystem but is instead a custom convention 
 # often used in collaborative or automated build systems to list dependencies required to compile 
