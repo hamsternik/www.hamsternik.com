@@ -1,6 +1,6 @@
 .SHELLFLAGS = -e -o pipefail -c
 
-VERSION := 2025.10.3
+VERSION := 2025.10.4
 
 BUILD_OUTPUT_NAME := nikita.khomitsevych.$(VERSION)
 LATEXMK := latexmk # latexmk --help OR https://mirrors.up.pt/pub/CTAN/support/latexmk/latexmk.pdf
