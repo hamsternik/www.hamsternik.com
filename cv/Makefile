@@ -26,8 +26,16 @@ ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 help:
 	@cat Makefile
 
-watch:
-	@watch --color -n1 'test main.tex -nt build/$(BUILD_OUTPUT_NAME).pdf && make build'
+.PHONY : version
+version:
+	@echo "resume version $(VERSION)"
+
+bump-version: version
+	@$(eval BUMPED_VERSION := $(shell echo $(VERSION) | awk -F . '{print $$1"."$$2"."$$3+1}'))
+	@echo "bump version to $(BUMPED_VERSION)"
+	@echo "$(BUMPED_VERSION)" > VERSION
+
+## Build & Deploy
 
 .PHONY : FORCE_MAKE
 build: FORCE_MAKE clean lacheck
@@ -36,11 +44,23 @@ build: FORCE_MAKE clean lacheck
 	@echo "\n🦠Coping output PDF to the /public dir."
 	cp build/$(BUILD_OUTPUT_NAME).pdf $(ROOT_DIR)/../public/nkhomitsevych.resume.pdf
 
-# The DEPENDS.txt file is not a standard feature of TeX/LaTeX ecosystem but is instead a custom convention 
-# often used in collaborative or automated build systems to list dependencies required to compile 
-# the document successfully. 
-# Before DEPENDS.txt the requirements.txt has been used. Check out potential issues with that approach: 
-# https://tex.stackexchange.com/q/528069.
+watch:
+	@watch --color -n1 'test main.tex -nt build/$(BUILD_OUTPUT_NAME).pdf && make build'
+
+.PHONY : deploy
+deploy: bump-version
+	@echo "\nRebuild the latest PDF file to change the title..."
+	@$(MAKE) build
+	@git add VERSION ../public/nkhomitsevych.resume.pdf
+	@git commit -m "cv: bump to $(BUMPED_VERSION); then deploy"
+
+## Install
+
+# The DEPENDS.txt file is not a standard feature of TeX/LaTeX ecosystem but
+# is instead a custom convention often used in collaborative or automated build systems
+# to list dependencies required to compile the document successfully. 
+# Before DEPENDS.txt the requirements.txt has been used. Check out potential
+# issues with that approach: https://tex.stackexchange.com/q/528069.
 # The 'cv' package contains only hard dependencies to install.
 install:
 	@sudo tlmgr option repository ctan
@@ -61,15 +81,3 @@ clean:
 
 lacheck:
 	@lacheck *.tex
-
-.PHONY : version
-version:
-	@echo "resume version $(VERSION)"
-
-bump-version: version
-	@$(eval BUMPED_VERSION := $(shell echo $(VERSION) | awk -F . '{print $$1"."$$2"."$$3+1}'))
-	@echo "bump version to $(BUMPED_VERSION)"
-	@echo "$(BUMPED_VERSION)" > VERSION
-	@echo "\nRebuild the latest PDF file to change the title..."
-	@$(MAKE) build
-	@git add VERSION && git commit -m "cv: bump to $(BUMPED_VERSION)"
