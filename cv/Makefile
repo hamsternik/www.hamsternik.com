@@ -1,6 +1,10 @@
 .SHELLFLAGS = -e -o pipefail -c
 
-VERSION := 2025.10.6
+# > [!TIP]:
+# Make variables are evaluated at parse time. When Make starts, it runs this line once.
+# The value never changes during the Make target's session, even if you modify the VERSION
+# file later in the target.
+VERSION := $(shell cat VERSION)
 
 BUILD_OUTPUT_NAME := nikita.khomitsevych.$(VERSION)
 LATEXMK := latexmk # latexmk --help OR https://mirrors.up.pt/pub/CTAN/support/latexmk/latexmk.pdf
@@ -26,10 +30,10 @@ watch:
 	@watch --color -n1 'test main.tex -nt build/$(BUILD_OUTPUT_NAME).pdf && make build'
 
 .PHONY : FORCE_MAKE
-build: FORCE_MAKE clean
-	@echo "🦠 The root dir: $(ROOT_DIR)"
+build: FORCE_MAKE clean lacheck
+	@echo "\n🦠 The root dir: $(ROOT_DIR)"
 	$(LATEXMK) $(LATEXMK_FLAGS) main.tex
-	@echo "🦠Coping output PDF to the /public dir."
+	@echo "\n🦠Coping output PDF to the /public dir."
 	cp build/$(BUILD_OUTPUT_NAME).pdf $(ROOT_DIR)/../public/nkhomitsevych.resume.pdf
 
 # The DEPENDS.txt file is not a standard feature of TeX/LaTeX ecosystem but is instead a custom convention 
@@ -58,6 +62,14 @@ clean:
 lacheck:
 	@lacheck *.tex
 
+.PHONY : version
 version:
 	@echo "resume version $(VERSION)"
 
+bump-version: version
+	@$(eval BUMPED_VERSION := $(shell echo $(VERSION) | awk -F . '{print $$1"."$$2"."$$3+1}'))
+	@echo "bump version to $(BUMPED_VERSION)"
+	@echo "$(BUMPED_VERSION)" > VERSION
+	@echo "\nRebuild the latest PDF file to change the title..."
+	@$(MAKE) build
+	@git add VERSION && git commit -m "cv: bump to $(BUMPED_VERSION)"
