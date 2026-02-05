@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(make bump-version:*)",
-      "Bash(make version:*)"
+      "Bash(make version:*)",
+      "Bash(npm info:*)"
     ],
     "deny": [],
     "ask": []
