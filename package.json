@@ -1,30 +1,19 @@
 {
-	"name": "www.hamsternik.com",
-	"type": "module",
-	"version": "0.0.1",
-	"scripts": {
-		"dev": "astro dev",
-		"start": "astro dev",
-		"build": "astro check && astro build",
-		"preview": "astro preview",
-		"astro": "astro"
-	},
-	"engines": {
-		"node": ">=20"
-	},
-	"dependencies": {
-		"@astrojs/check": "^0.5.9",
-		"@astrojs/mdx": "^4.3.13",
-		"@astrojs/rss": "^4.0.5",
-		"@astrojs/sitemap": "^3.1.1",
-		"@astrojs/tailwind": "^5.1.0",
-		"astro": "^5.17.1",
-		"tailwindcss": "^3.4.1",
-		"typescript": "^5.4.2"
-	},
-	"devDependencies": {
-		"prettier": "^3.2.5",
-		"prettier-plugin-astro": "^0.13.0",
-		"prettier-plugin-tailwindcss": "^0.6.11"
-	}
+  "name": "www.hamsternik.com",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "npx @11ty/eleventy --serve",
+    "start": "npx @11ty/eleventy --serve",
+    "build": "npx @11ty/eleventy",
+    "preview": "npx @11ty/eleventy --serve"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "@11ty/eleventy-plugin-rss": "^2.0.4",
+    "prettier": "^3.2.5"
+  }
 }

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Global Metadata -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="generator" content="Eleventy" />
+
+    <!-- Font preloads -->
+    <link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
+    <link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/global.css" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+
+    <!-- Primary Meta Tags -->
+    <title>{{ metaTitle or title or site.title }}</title>
+    <meta name="title" content="{{ metaTitle or title or site.title }}" />
+    <meta name="description" content="{{ description or site.description }}" />
+    <meta name="author" content="Nikita Khomitsevych" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+    <meta property="og:title" content="{{ metaTitle or title or site.title }}" />
+    <meta property="og:description" content="{{ description or site.description }}" />
+
+    <!-- Twitter -->
+    <meta name="twitter:site" content="@hvms6k" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="{{ site.url }}{{ page.url }}" />
+    <meta property="twitter:title" content="{{ metaTitle or title or site.title }}" />
+    <meta property="twitter:description" content="{{ description or site.description }}" />
+
+    <!-- Telegram -->
+    <meta name="telegram:channel" content="@hamsternik" />
+  </head>
+  <body>
+    {% if showHeader %}
+      {% include "header.njk" %}
+    {% endif %}
+    <main>
+      {{ content | safe }}
+    </main>
+    {% if showFooter %}
+      {% include "footer.njk" %}
+    {% endif %}
+  </body>
+</html>
