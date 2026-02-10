@@ -3,7 +3,8 @@
     "allow": [
       "Bash(make bump-version:*)",
       "Bash(make version:*)",
-      "Bash(npm info:*)"
+      "Bash(npm info:*)",
+      "Bash(gh api:*)"
     ],
     "deny": [],
     "ask": []
