@@ -1,43 +1,16 @@
 node_modules/
-dist/
-*.tsbuildinfo
-.DS_Store
-.vercel
-.netlify
 _site/
-scripts/smoke/*-main/
-scripts/memory/project/src/pages/
-benchmark/projects/
-benchmark/results/
+.DS_Store
 *.log
 package-lock.json
-.turbo/
-.eslintcache
-.pnpm-store
-
-# ignore top-level vscode settings
-/.vscode/settings.json
 
 # do not commit .env files or any files that end with `.env`
 *.env
 
-packages/astro/src/**/*.prebuilt.ts
-packages/astro/src/**/*.prebuilt-dev.ts
-!packages/astro/vendor/vite/dist
-packages/integrations/**/.netlify/
-
 # exclude IntelliJ/WebStorm stuff
 .idea
 
-# ignore content collection generated files
-packages/**/test/**/fixtures/**/.astro/
-packages/**/test/**/fixtures/**/env.d.ts
-packages/**/e2e/**/fixtures/**/.astro/
-packages/**/e2e/**/fixtures/**/env.d.ts
-examples/**/.astro/
-examples/**/env.d.ts
-
-# TeX.gitignore 
+# TeX.gitignore
 # https://github.com/github/gitignore/blob/main/TeX.gitignore
 
 cv/build
@@ -45,7 +18,6 @@ cv/build
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
-*.log
 *.lot
 *.fls
 *.out
@@ -60,10 +32,6 @@ cv/build
 *.dvi
 *.xdv
 *-converted-to.*
-# these rules might exclude image files for figures etc.
-# *.ps
-# *.eps
-# *.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl

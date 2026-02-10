@@ -1,0 +1,23 @@
+---
+layout: base.njk
+title: "Blog"
+showHeader: true
+showFooter: true
+---
+<section>
+  <ul class="blog-list">
+    {%- for post in collections.blog | reverse -%}
+    <li>
+      <a href="{{ post.url }}">
+        {% if post.data.heroImage %}
+        <img width="720" height="360" src="{{ post.data.heroImage }}" alt="" />
+        {% endif %}
+        <h4 class="title">{{ post.data.title }}</h4>
+        <p class="date">
+          <time datetime="{{ post.date | dateISO }}">{{ post.date | dateDisplay }}</time>
+        </p>
+      </a>
+    </li>
+    {%- endfor -%}
+  </ul>
+</section>

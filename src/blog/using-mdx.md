@@ -1,7 +1,7 @@
 ---
 title: 'Using MDX'
 description: 'Lorem ipsum dolor sit amet'
-pubDate: 'Jul 02 2022'
+date: 2022-07-02
 heroImage: '/blog-placeholder-5.jpg'
 ---
 
@@ -15,14 +15,10 @@ If you have existing content authored in MDX, this integration will hopefully ma
 
 ## Example
 
-Here is how you import and use a UI component inside of MDX.  
+Here is how you import and use a UI component inside of MDX.
 When you open this page in the browser, you should see the clickable button below.
 
-import HeaderLink from '../../components/HeaderLink.astro';
-
-<HeaderLink href="#" onclick="alert('clicked!')">
-	Embedded component in MDX
-</HeaderLink>
+[Embedded component in MDX](#)
 
 ## More Links
 
