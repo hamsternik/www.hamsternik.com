@@ -42,6 +42,16 @@ examples/**/env.d.ts
 
 cv/build
 
+# an auto-generated file by Emacs AUCTeX.
+# eMacs creates _region_.tex as a temp file containing:
+# doc preamble, e.g. package, macros; selected text region, etc.
+# the file recreates each time when you are using region compilation.
+_region_.tex
+
+# the /auto dir is auto generated direction, containing style hooks,
+# to cache information about LaTeX document for faster parsin and better auto-completion.
+cv/auto/
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
