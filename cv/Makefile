@@ -1,3 +1,5 @@
+
+
 .SHELLFLAGS = -e -o pipefail -c
 
 # > [!TIP]:
@@ -20,7 +22,7 @@ TEXS := $(wildcard *.tex)
 PDFS := $(TEXS:.tex=.pdf)
 
 ## Project Rules
-mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
+mkfile_path := $(Abspath $(lastword $(MAKEFILE_LIST)))
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
 help:
@@ -30,6 +32,10 @@ help:
 version:
 	@echo "resume version $(VERSION)"
 
+clean:
+	$(LATEXMK) -output-directory="build" $(LATEXMK_FLAGS_CLEAN)
+	@if [[ -d "build" ]]; then rm -rf build; fi
+
 bump-version: version
 	@$(eval BUMPED_VERSION := $(shell echo $(VERSION) | awk -F . '{print $$1"."$$2"."$$3+1}'))
 	@echo "bump version to $(BUMPED_VERSION)"
@@ -37,12 +43,20 @@ bump-version: version
 
 ## Build & Deploy
 
+# Without having FORCE_MAKE as pattern, Make would check timestamps and skip `build-*` if it thinks nothing changed.
 .PHONY : FORCE_MAKE
-build: FORCE_MAKE clean lacheck
+
+build-ios: TEX_FILE = main.tex
+build-ios: FORCE_MAKE clean lacheck
 	@echo "\n🦠 The root dir: $(ROOT_DIR)"
-	$(LATEXMK) $(LATEXMK_FLAGS) main.tex
+	$(LATEXMK) $(LATEXMK_FLAGS) $(TEX_FILE)
 	@echo "\n🦠Coping output PDF to the /public dir."
 	cp build/$(BUILD_OUTPUT_NAME).pdf $(ROOT_DIR)/../public/nkhomitsevych.resume.pdf
+
+build-fullstack: TEX_FILE = main.product.tex
+build-fullstack: FORCE_MAKE clean lacheck
+	@echo "\n🦠 The root dir: $(ROOT_DIR)"
+	$(LATEXMK) $(LATEXMK_FLAGS) $(TEX_FILE)
 
 watch:
 	@watch --color -n1 'test main.tex -nt build/$(BUILD_OUTPUT_NAME).pdf && make build'
@@ -53,6 +67,12 @@ deploy: bump-version
 	@$(MAKE) build
 	@git add VERSION ../public/nkhomitsevych.resume.pdf
 	@git commit -m "cv: bump to $(BUMPED_VERSION); then deploy"
+
+
+## Package Rules
+
+lacheck:
+	@lacheck $(TEX_FILE)
 
 ## Install
 
@@ -72,12 +92,3 @@ install:
 install2:
 	@tlmgr --usermode option repository ctan
 	tlmgr --usermode install $(shell cut -w -f 2 "$(shell pwd)/DEPENDS.txt" | uniq)	
-
-clean:
-	$(LATEXMK) $(LATEXMK_FLAGS) $(LATEXMK_FLAGS_CLEAN)
-	@if [[ -d "build" ]]; then rm -rf build; fi
-
-## Package Rules
-
-lacheck:
-	@lacheck *.tex
