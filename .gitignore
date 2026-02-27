@@ -1,3 +1,6 @@
+# claude-code local conf settings
+.claude/settings.local.json
+
 node_modules/
 dist/
 *.tsbuildinfo

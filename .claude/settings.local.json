@@ -4,7 +4,8 @@
       "Bash(make bump-version:*)",
       "Bash(make version:*)",
       "Bash(npm info:*)",
-      "Bash(gh api:*)"
+      "Bash(gh api:*)",
+      "Bash(ls:*)"
     ],
     "deny": [],
     "ask": []
