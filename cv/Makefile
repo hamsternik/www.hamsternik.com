@@ -6,9 +6,9 @@
 # file later in the target.
 VERSION := $(shell cat VERSION)
 
-BUILD_OUTPUT_NAME := nikita.khomitsevych.$(VERSION)
+BUILD_OUTPUT_BASE := nikita.khomitsevych
 LATEXMK := latexmk # latexmk --help OR https://mirrors.up.pt/pub/CTAN/support/latexmk/latexmk.pdf
-LATEXMK_FLAGS := -verbose -jobname="$(BUILD_OUTPUT_NAME)" -output-directory="build" -use-make -pdf # -f to force continued processing past errors 
+LATEXMK_FLAGS_BASE := -verbose -output-directory="build" -use-make -pdf # -f to force continued processing past errors 
 LATEXMK_FLAGS_CLEAN := -C # to clean all without pdf output use `-c` instead
 
 # TeX typesetting engine using Unicode and supporting modern font technologies such as Apple Advanced Typography.
@@ -45,16 +45,18 @@ bump-version: version
 .PHONY : FORCE_MAKE
 
 build-ios: TEX_FILE = main.ios.tex
+build-ios: BUILD_OUTPUT_NAME = $(BUILD_OUTPUT_BASE).iOS.$(VERSION)
 build-ios: FORCE_MAKE clean lacheck bump-version
 	@echo "\n🦠 The root dir: $(ROOT_DIR)"
-	$(LATEXMK) $(LATEXMK_FLAGS) $(TEX_FILE)
+	$(LATEXMK) $(LATEXMK_FLAGS_BASE) -jobname="$(BUILD_OUTPUT_NAME)" $(TEX_FILE)
 	@echo "\n🦠Coping output PDF to the /public dir."
 	cp build/$(BUILD_OUTPUT_NAME).pdf $(ROOT_DIR)/../public/nkhomitsevych.resume.pdf
 
 build-fs: TEX_FILE = main.fs.tex
+build-fs: BUILD_OUTPUT_NAME = $(BUILD_OUTPUT_BASE).fs.$(VERSION)
 build-fs: FORCE_MAKE clean lacheck bump-version
 	@echo "\n🦠 The root dir: $(ROOT_DIR)"
-	$(LATEXMK) $(LATEXMK_FLAGS) $(TEX_FILE)
+	$(LATEXMK) $(LATEXMK_FLAGS_BASE) -jobname="$(BUILD_OUTPUT_NAME)" $(TEX_FILE)
 
 watch:
 	@watch --color -n1 'test main.tex -nt build/$(BUILD_OUTPUT_NAME).pdf && make build'
