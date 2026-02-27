@@ -68,7 +68,7 @@ watch-fs:
 deploy:
 	@echo "\nRebuild the latest PDF file to change the title..."
 	@$(MAKE) build-ios
-	@git add ../public/nkhomitsevych.resume.pdf
+	@git add VERSION ../public/nkhomitsevych.resume.pdf
 	@git commit -m "cv: deploy iOS resume, bumped $(BUMPED_VERSION)"
 
 
