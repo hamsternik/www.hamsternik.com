@@ -1,5 +1,3 @@
-
-
 .SHELLFLAGS = -e -o pipefail -c
 
 # > [!TIP]:
@@ -46,15 +44,15 @@ bump-version: version
 # Without having FORCE_MAKE as pattern, Make would check timestamps and skip `build-*` if it thinks nothing changed.
 .PHONY : FORCE_MAKE
 
-build-ios: TEX_FILE = main.tex
-build-ios: FORCE_MAKE clean lacheck
+build-ios: TEX_FILE = main.ios.tex
+build-ios: FORCE_MAKE clean lacheck bump-version
 	@echo "\n🦠 The root dir: $(ROOT_DIR)"
 	$(LATEXMK) $(LATEXMK_FLAGS) $(TEX_FILE)
 	@echo "\n🦠Coping output PDF to the /public dir."
 	cp build/$(BUILD_OUTPUT_NAME).pdf $(ROOT_DIR)/../public/nkhomitsevych.resume.pdf
 
-build-fullstack: TEX_FILE = main.product.tex
-build-fullstack: FORCE_MAKE clean lacheck
+build-fs: TEX_FILE = main.fs.tex
+build-fs: FORCE_MAKE clean lacheck bump-version
 	@echo "\n🦠 The root dir: $(ROOT_DIR)"
 	$(LATEXMK) $(LATEXMK_FLAGS) $(TEX_FILE)
 
