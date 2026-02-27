@@ -58,15 +58,18 @@ build-fs: FORCE_MAKE clean lacheck bump-version
 	@echo "\n🦠 The root dir: $(ROOT_DIR)"
 	$(LATEXMK) $(LATEXMK_FLAGS_BASE) -jobname="$(BUILD_OUTPUT_NAME)" $(TEX_FILE)
 
-watch:
-	@watch --color -n1 'test main.tex -nt build/$(BUILD_OUTPUT_NAME).pdf && make build'
+watch-ios:
+	@watch --color -n1 'test main.ios.tex -nt build/$(BUILD_OUTPUT_BASE).iOS.*.pdf && make build-ios'
+
+watch-fs:
+	@watch --color -n1 'test main.fs.tex -nt build/$(BUILD_OUTPUT_BASE).fs.*.pdf && make build-fs'
 
 .PHONY : deploy
-deploy: bump-version
+deploy:
 	@echo "\nRebuild the latest PDF file to change the title..."
-	@$(MAKE) build
-	@git add VERSION ../public/nkhomitsevych.resume.pdf
-	@git commit -m "cv: bump to $(BUMPED_VERSION); then deploy"
+	@$(MAKE) build-ios
+	@git add ../public/nkhomitsevych.resume.pdf
+	@git commit -m "cv: deploy iOS resume, bumped $(BUMPED_VERSION)"
 
 
 ## Package Rules
