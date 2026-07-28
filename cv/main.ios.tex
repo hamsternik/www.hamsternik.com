@@ -119,6 +119,10 @@ in safety-critical environments. Full-stack capable (React, Next.js, PostgreSQL)
 \item  Architected a unified Bluetooth layer supporting 4 heterogeneous medical devices (vendor SDK, BGXpress serial,
   standard GATT, file replay) through a standalone module (package) by an actor-based live implementation. Integrated
   within UDF architecture in the main iOS code base.
+\item Integrated a \textbf{WebSockets} SDK for bi-directional client--server communication, streaming real-time
+  telemetry from the BLE medical device to the backend. Owned connection-state management and a \textbf{durable
+  outbox} on local SQLite with a resend engine — guaranteeing at-least-once delivery of every packet across
+  drops and reconnects on an unreliable mobile network.
 \end{itemize}
 
 \SubSectionSpacing
@@ -207,14 +211,27 @@ in safety-critical environments. Full-stack capable (React, Next.js, PostgreSQL)
 \item The application was designed to scale in mind using VIPER design pattern and BDD testing approach (Quick, Nimble).
 \end{itemize}
 
+%% Open Source
+
+\subsection*{Open Source}
+
+\noindent
+\begin{itemize}[label=-]
+\item \textbf{\href{https://github.com/hamsternik/PhantomKeychain}{PhantomKeychain}} — type-safe Swift package
+  storing secrets behind phantom-typed Keychain keys: compile-time key/value safety, in-memory test double,
+  distributed via SPM. Extracted from production work and open-sourced for reuse across projects.
+\end{itemize}
+
 %% Tech Stack
 
 \subsection*{Technical Stack}
 
 \noindent \textbf{iOS}: Swift, Objective-C, SwiftUI, UIKit, Swift Concurrency,
-Swift Testing, RxSwift, GCD, XCTest, Redux, MVVM.\\
-\noindent \textbf{Full-stack}: React, React Native, Next.js, JavaScript, TypeScript, PostgreSQL, WebSockets.\\
-\noindent \textbf{Tools}: Make, Fastlane, GitHub Actions.
+GCD (libdispatch), RxSwift, XCTest, Swift Testing,
+VIPER, MVVM, Coordinators, Uber RIBs, Redux,
+Core Bluetooth, BLE, MFi, Keychain, WebSockets, SQLite.\\
+\noindent \textbf{Full-stack}: React, React Native, Next.js, JavaScript, TypeScript, PostgreSQL.\\
+\noindent \textbf{Tools}: Make, Fastlane, GitHub Actions, SPM.
 
 %% Education
 
