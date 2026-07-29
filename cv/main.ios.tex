@@ -131,10 +131,9 @@ delivered features.
   \textbf{SQLCipher}-encrypted local outbox feeding a \textbf{WebSocket} stream with
   checksummed chunks and a retry/backoff loop — at-least-once delivery across network
   drops and reconnects.
-\item Restructured the project for \textbf{agent-assisted development}: decomposed it into
-  25 independently testable Swift package products, so each unit is verified in isolation
-  and composed into features — 420+ cases in \textbf{Swift Testing}, static analysis on
-  every PR.
+\item Made \textbf{agentic coding} the primary development workflow, converging on
+  \textbf{spec-driven} and \textbf{test-driven development} — 25 independently verifiable
+  Swift packages that agents extend and tests validate before composition.
 \end{itemize}
 
 \SubSectionSpacing
