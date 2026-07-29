@@ -106,23 +106,35 @@ in safety-critical environments. Full-stack capable (React, Next.js, PostgreSQL)
 \subsection*{Experience}
 
 \Experience
-{Lead iOS Engineer}
-{Mar 2025 -- Present}
-{\href{https://www.kensahealth.com/}{Kensa Health}}
+{Lead iOS Engineer, R\&D}
+{Mar 2025 -- Aug 2026}
+{\href{https://www.kensahealth.com/}{Kensa Health} (formerly SURE Universal)}
 
 \noindent
+Sole iOS engineer on a remote patient monitoring product: owned the codebase from initial
+commit to TestFlight, drove planning, estimation and scope with the cross-functional team,
+and translated protocol specifications from third-party medical device manufacturers into
+delivered features.
 
 \begin{itemize}[label=-]
-\item Reverse-engineered a proprietary 12-bit packed binary protocol over BGXpress serial-BLE for the certain ECG
-  device, that delivers 3-lead real-time ECG visualization at 256 Hz with <33ms render latency — fully unit-testable
-  against captured hex dumps.
-\item  Architected a unified Bluetooth layer supporting 4 heterogeneous medical devices (vendor SDK, BGXpress serial,
-  standard GATT, file replay) through a standalone module (package) by an actor-based live implementation. Integrated
-  within UDF architecture in the main iOS code base.
-\item Integrated a \textbf{WebSockets} SDK for bi-directional client--server communication, streaming real-time
-  telemetry from the BLE medical device to the backend. Owned connection-state management and a \textbf{durable
-  outbox} on local SQLite with a resend engine — guaranteeing at-least-once delivery of every packet across
-  drops and reconnects on an unreliable mobile network.
+\item Integrated \textbf{3 medical devices} (thermometer, pulse oximeter, 3-lead ECG
+  recorder) over vendor SDKs, BLE GATT and serial-over-BLE, and modelled every reading as
+  \textbf{FHIR} observation and device data resources.
+\item Implemented a proprietary ECG wire protocol in Swift from the manufacturer's
+  specification with no vendor iOS SDK — binary command/ACK messaging and a real-time
+  streaming decoder for 3-lead ECG, unit-tested against captured hex fixtures.
+\item Built a reusable \textbf{Core Bluetooth} connectivity layer over a generic
+  \textbf{GATT} profile abstraction — read, write and notify behind one device-agnostic
+  interface, fully testable without hardware, so each new device integration reused one
+  proven connection path.
+\item Built an offline-durable delivery pipeline for patient measurements: an
+  \textbf{SQLCipher}-encrypted local outbox feeding a \textbf{WebSocket} stream with
+  checksummed chunks and a retry/backoff loop — at-least-once delivery across network
+  drops and reconnects.
+\item Restructured the project for \textbf{agent-assisted development}: decomposed it into
+  25 independently testable Swift package products, so each unit is verified in isolation
+  and composed into features — 420+ cases in \textbf{Swift Testing}, static analysis on
+  every PR.
 \end{itemize}
 
 \SubSectionSpacing
@@ -219,9 +231,12 @@ certification from the engineering side.
 \noindent \textbf{iOS}: Swift, SwiftUI, Swift Concurrency, Swift Testing, SPM,
 UIKit, GCD (libdispatch), RxSwift, XCTest, Objective-C.
 \noindent \textbf{App architecture}: Redux/UDF, MVVM, Coordinators, Uber RIBs, VIPER.
-\noindent \textbf{Platform \& data}: Core Bluetooth, BLE, MFi, Keychain, WebSockets, SQLite.\\
+\noindent \textbf{Platform \& data}: Core Bluetooth, BLE, MFi, Keychain, WebSockets, SQLite, SQLCipher, GRDB.\\
+\noindent \textbf{Healthcare}: FHIR R4, HL7, LOINC, UCUM.\\
 \noindent \textbf{Full-stack}: React, React Native, Next.js, JavaScript, TypeScript, PostgreSQL.\\
-\noindent \textbf{Tools}: Make, Fastlane, GitHub Actions.
+\noindent \textbf{Tools}: Make, Fastlane, GitHub Actions.\\
+\noindent \textbf{AI-assisted development}: Claude Code, GitHub Copilot CLI, MCP server
+configuration, agent context/memory engineering.
 
 %% Education
 
