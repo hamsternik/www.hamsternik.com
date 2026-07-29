@@ -24,6 +24,8 @@ package-lock.json
 # do not commit .env files or any files that end with `.env`
 *.env
 
+## Astro auto-generated
+.astro/
 packages/astro/src/**/*.prebuilt.ts
 packages/astro/src/**/*.prebuilt-dev.ts
 !packages/astro/vendor/vite/dist
