@@ -71,7 +71,7 @@ deploy:
 	@echo "\nRebuild the latest PDF file to change the title..."
 	@$(MAKE) build-ios
 	@git add VERSION ../public/nkhomitsevych.resume.ios.pdf
-	@git commit -m "cv: deploy iOS resume, bumped $(BUMPED_VERSION)"
+	@git commit -m "cv: deploy iOS resume, bumped $$(cat VERSION)"
 
 
 ## Package Rules
