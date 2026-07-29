@@ -108,13 +108,24 @@ focused on full-stack development with React, Next.js, TypeScript and PostgreSQL
 \subsection*{Experience}
 
 \Experience
-{Senior Software Engineer}
-{Jan 2025 -- Present}
-{\href{https://finitetimespace.com}{Finite Timespace LLC}}
+{Lead iOS Engineer, R\&D}
+{Mar 2025 -- Aug 2026}
+{\href{https://www.kensahealth.com/}{Kensa Health} (formerly SURE Universal)}
 
 \noindent
-Provide hands-on engineering and technical consulting for businesses
-and startups across web and mobile platforms.
+\begin{itemize}[label=-]
+  \setlength\itemsep{0em}
+\item built an offline-durable delivery pipeline for patient measurements — an encrypted
+  local outbox with idempotency keys feeding a \textbf{WebSocket} stream, with checksummed
+  chunks and a retry/backoff loop for at-least-once delivery across network drops.
+\item owned the client persistence layer: \textbf{SQLite} schema with versioned
+  append-only migrations, \textbf{SQLCipher} encryption at rest, and Keychain-backed
+  key management.
+\item integrated \textbf{FHIR} REST APIs for observation and device data, and
+  \textbf{OAuth} authentication with authorization-code exchange and refresh-token renewal.
+\item defined the cross-platform wire contract with the Android client — a canonical JSON
+  encoder producing \textbf{SHA-256} checksums byte-identical across both platforms.
+\end{itemize}
 
 \SubSectionSpacing
 
@@ -124,11 +135,23 @@ and startups across web and mobile platforms.
 {\href{https://www.wurthy.co}{Wurthy} (Profitable solutions for growing businesses)}
 
 \noindent
+Product engineer on a B2B/B2C fintech platform — a merchant dashboard and a consumer
+checkout and financing app — built with \textbf{Next.js}, \textbf{TypeScript} and
+\textbf{Prisma}/\textbf{PostgreSQL}.
+
 \begin{itemize}[label=-]
   \setlength\itemsep{0em}
-\item designed and built two production web apps (B2B dashboard,
-  customer checkout flow) with \textbf{REST API design}, enabling real-time MRR tracking and
-  reducing manual sales reporting.
+\item shipped merchant cash-out end to end, letting businesses withdraw earnings to their
+  own bank account — bank linking, ACH transfer, and the data-model change that allowed
+  transfers to exist independently of a sales agreement.
+\item closed a security gap in money movement: one-time passcodes protecting transfers and
+  trades could be requested against any email address supplied by the client, so I rebound
+  them to the authenticated server session.
+\item gave merchants visibility into financing costs with a per-instalment breakdown of
+  principal and interest, replacing one overloaded page with views tailored to each
+  payment type.
+\item enforced a daily withdrawal limit and corrected available-balance reporting by
+  deriving it from the transaction ledger instead of a third-party API call.
 \end{itemize}
 
 \SubSectionSpacing
@@ -155,16 +178,10 @@ and startups across web and mobile platforms.
 {\href{https://www.life360.com}{Life360 Inc.} (Family safety through location sharing)}
 
 \noindent
-\begin{itemize}[label=-]
-  \setlength\itemsep{0em}
-\item led a \textbf{cross-functional team of 4 engineers}, owning
-  requirements, sprint delivery, and people management.
-\item designed and shipped Lead Generation feature delivering
-  \textbf{personalized auto insurance plans} to 30+ millions monthly
-  active users.
-\item designed and shipped brand new \textbf{Driving tab} to display
-  driving statistics, promoting safe driving service.
-\end{itemize}
+Led a \textbf{cross-functional team of 4 engineers}, owning requirements, sprint delivery
+and people management. Designed and shipped the \textbf{Lead Generation} feature delivering
+personalized auto insurance plans into a product at \textit{30+ million monthly active
+users}.
 
 \SubSectionSpacing
 
@@ -174,14 +191,8 @@ and startups across web and mobile platforms.
 {\href{https://betterme.world/about}{BetterMe USA} (Personalized holistic wellness solution)}
 
 \noindent
-\begin{itemize}[label=-]
-  \setlength\itemsep{0em}
-\item build Health Coaching and Mental Health products from scratch
-  using \textbf{Redux architecture} (unidirectional data flow,
-  centralized state, event-driven design).
-\item led architecture migration from \textbf{VIPER to Redux}, Mental
-  Health app.
-\end{itemize}
+Built two consumer wellness products from scratch and led their architecture migration to
+\textbf{Redux} — unidirectional data flow, centralized state, event-driven design.
 
 \SubSectionSpacing
 
@@ -192,22 +203,25 @@ and startups across web and mobile platforms.
 Cares, FDA-cleared remote health monitoring platform)}
 
 \noindent
-\begin{itemize}[label=-]
-  \setlength\itemsep{0em}
-\item built \textbf{real-time health monitoring mobile app processing
-    live sensor data} for remote patient diagnostics (FDA-cleared
-  product).
-\item architected \textbf{device communication SDK}, Bluetooth
-  Classic; supported FDA certification from engineering side.
-\end{itemize}
+Built a \textbf{real-time health monitoring} app processing live sensor data for remote
+patient diagnostics on an \textbf{FDA-cleared} product, and architected the device
+communication SDK.
 
 %% Tech Stack
 
 \subsection*{Technical Stack}
 
-\noindent \textbf{Full-stack}: React, React Native, Next.js, Node.js, JavaScript, TypeScript,
-Tailwind CSS, PostgreSQL, Supabase, Prisma ORM, WebSockets, Jest.
-\textbf{Tools}: Make, Fastlane, GitHub Actions.
+\noindent \textbf{Frontend}: React, Next.js (App Router), TypeScript, JavaScript,
+Tailwind CSS, Emotion, Radix/shadcn.\\
+\noindent \textbf{Backend \& data}: Node.js, Next.js server actions, PostgreSQL, Prisma ORM,
+Supabase, SQLite, SQLCipher, Firebase/Firestore.\\
+\noindent \textbf{Integrations}: REST APIs, WebSockets (Socket.IO), OAuth, NextAuth,
+Plaid, Treasury Prime, React Email.\\
+\noindent \textbf{Healthcare}: FHIR R4, HL7, LOINC, UCUM.\\
+\noindent \textbf{Mobile}: Swift, SwiftUI, UIKit, Core Bluetooth, Redux/UDF.\\
+\noindent \textbf{Tools}: Make, GitHub Actions, Vercel, Fastlane, SonarQube.\\
+\noindent \textbf{AI-assisted development}: Claude Code, GitHub Copilot CLI, MCP server
+configuration, agent context/memory engineering.
 
 %% Education
 
