@@ -50,13 +50,15 @@ build-ios: FORCE_MAKE clean lacheck bump-version
 	@echo "\n🦠 The root dir: $(ROOT_DIR)"
 	$(LATEXMK) $(LATEXMK_FLAGS_BASE) -jobname="$(BUILD_OUTPUT_NAME)" $(TEX_FILE)
 	@echo "\n🦠Coping output PDF to the /public dir."
-	cp build/$(BUILD_OUTPUT_NAME).pdf $(ROOT_DIR)/../public/nkhomitsevych.resume.pdf
+	cp build/$(BUILD_OUTPUT_NAME).pdf $(ROOT_DIR)/../public/nkhomitsevych.resume.ios.pdf
 
 build-fs: TEX_FILE = main.fs.tex
 build-fs: BUILD_OUTPUT_NAME = $(BUILD_OUTPUT_BASE).fs.$(VERSION)
 build-fs: FORCE_MAKE clean lacheck bump-version
 	@echo "\n🦠 The root dir: $(ROOT_DIR)"
 	$(LATEXMK) $(LATEXMK_FLAGS_BASE) -jobname="$(BUILD_OUTPUT_NAME)" $(TEX_FILE)
+	@echo "\n🦠Coping output PDF to the /public dir."
+	cp build/$(BUILD_OUTPUT_NAME).pdf $(ROOT_DIR)/../public/nkhomitsevych.resume.fs.pdf
 
 watch-ios:
 	@watch --color -n1 'test main.ios.tex -nt build/$(BUILD_OUTPUT_BASE).iOS.*.pdf && make build-ios'
@@ -68,7 +70,7 @@ watch-fs:
 deploy:
 	@echo "\nRebuild the latest PDF file to change the title..."
 	@$(MAKE) build-ios
-	@git add VERSION ../public/nkhomitsevych.resume.pdf
+	@git add VERSION ../public/nkhomitsevych.resume.ios.pdf
 	@git commit -m "cv: deploy iOS resume, bumped $(BUMPED_VERSION)"
 
 
