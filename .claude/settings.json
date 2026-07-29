@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(gcat *)",
+      "Bash(ggrep *)",
+      "Bash(ghead *)",
+      "Bash(gtail *)",
+      "Bash(gwc *)",
+      "Bash(gtr *)",
+      "Bash(gsort *)",
+      "Bash(guniq *)",
+      "Bash(gls *)",
+      "Bash(gstat *)",
+      "Bash(pdflatex *)",
+      "Bash(git check-ignore *)",
+      "WebFetch(domain:github.com)"
+    ]
+  }
+}
