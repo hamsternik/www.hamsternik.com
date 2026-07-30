@@ -5,6 +5,9 @@
  */
 
 :root {
+	/* Tells the browser to render native UI — scrollbars, form controls,
+	   text selection — in the theme the user actually has. */
+	color-scheme: light dark;
 	--accent: #2337ff;
 	--accent-dark: #000d8a;
 	--black: 15, 18, 25;
@@ -31,6 +34,12 @@
 		--gray-dark: 229, 233, 240;
 		--gray-gradient: #1c1c1c, rgb(var(--obsidian));
 		--page-bg: rgb(var(--obsidian));
+		/* Must be redefined, not inherited: the light value is built from
+		   rgba(var(--gray), …), and --gray is light in dark mode — which would
+		   render the shadow as a glow. Shadows on dark surfaces also need more
+		   opacity to read at all. */
+		--box-shadow: 0 2px 6px rgba(0, 0, 0, 45%), 0 8px 24px rgba(0, 0, 0, 55%),
+			0 16px 32px rgba(0, 0, 0, 55%);
 	}
 }
 @font-face {
