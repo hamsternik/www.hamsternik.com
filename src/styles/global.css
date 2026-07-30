@@ -113,6 +113,12 @@ a {
 a:hover {
 	color: var(--accent);
 }
+/* Muted selection that works on both surfaces. Colour is left to inherit so
+   selected text keeps its own contrast rather than being forced to one value. */
+::selection {
+	background-color: rgba(var(--gray), 0.3);
+}
+
 /* Explicit focus ring rather than the browser default, which can wash out
    against the dark surface. :focus-visible so it appears for keyboard use
    without ringing every mouse click. */

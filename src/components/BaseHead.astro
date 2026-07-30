@@ -11,15 +11,22 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
+// No default image: the old fallback pointed at /blog-placeholder-1.jpg, which
+// does not exist, so every share preview requested a 404. Emitting no og:image
+// is better than emitting a broken one.
+const { title, description, image } = Astro.props;
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
-<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 <meta name="generator" content={Astro.generator} />
+
+<!-- Browser chrome colour, per theme -->
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#161616" media="(prefers-color-scheme: dark)" />
 
 <!-- Font preloads -->
 <link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
@@ -39,7 +46,7 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+{image && <meta property="og:image" content={new URL(image, Astro.url)} />}
 
 <!-- Twitter -->
 <meta name="twitter:site" content="@hvms6k">
@@ -47,7 +54,7 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+{image && <meta property="twitter:image" content={new URL(image, Astro.url)} />}
 
 <!-- Telegram -->
 <meta name="telegram:channel" content="@hamsternik" />
