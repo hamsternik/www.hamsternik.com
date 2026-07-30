@@ -14,6 +14,24 @@
 	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
 	--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
 		0 16px 32px rgba(var(--gray), 33%);
+	/* Obsidian Grey — the dark-theme surface, and the avatar ring in light mode. */
+	--obsidian: 22, 22, 22;
+	--page-bg: #fff;
+}
+
+/* Dark theme. Every colour on the site resolves through the variables above,
+   so overriding them here is enough — no per-component dark rules needed. */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--accent: #8c9eff;
+		--accent-dark: #b9c2ff;
+		--black: 237, 240, 245;
+		--gray: 150, 162, 186;
+		--gray-light: 38, 40, 46;
+		--gray-dark: 229, 233, 240;
+		--gray-gradient: #1c1c1c, rgb(var(--obsidian));
+		--page-bg: rgb(var(--obsidian));
+	}
 }
 @font-face {
 	font-family: 'Atkinson';
@@ -35,6 +53,9 @@ body {
 	padding: 0;
 	text-align: left;
 	background: linear-gradient(var(--gray-gradient)) no-repeat;
+	/* The gradient is only 600px tall, so the rest of a long page falls through
+	   to this base colour. Must come after the `background` shorthand. */
+	background-color: var(--page-bg);
 	background-size: 100% 600px;
 	word-wrap: break-word;
 	overflow-wrap: break-word;

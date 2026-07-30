@@ -1,11 +1,22 @@
 ---
+import { Image } from 'astro:assets';
 import HeaderLink from './HeaderLink.astro';
+import avatar from '../assets/avatar.png';
 ---
 
 <header>
+	<a class="avatar-link" href="/about">
+		<Image
+			class="avatar"
+			src={avatar}
+			width={112}
+			height={112}
+			densities={[2]}
+			alt="About Niki Khomitsevych"
+		/>
+	</a>
 	<nav>
 		<HeaderLink href="/">Home</HeaderLink>
-		<HeaderLink href="/about">About</HeaderLink>
 		<HeaderLink href="/blog">Blog</HeaderLink>
 	</nav>
 </header>
@@ -14,6 +25,44 @@ import HeaderLink from './HeaderLink.astro';
 	header {
 		margin: 0;
 		padding: 2em 1em 0;
+	}
+	/* The link, not the image, carries the centering: an inline <a> would
+	   collapse to its content and margin:auto on the image would not center. */
+	.avatar-link {
+		display: block;
+		width: 112px;
+		margin: 0 auto 1em;
+	}
+	.avatar {
+		display: block;
+		width: 112px;
+		height: 112px;
+		border-radius: 50%;
+		/* A box-shadow ring rather than a border: it grows outward without
+		   changing the element's box, so nothing around it shifts. */
+		box-shadow: 0 0 0 0 var(--avatar-ring);
+		transition: box-shadow 0.125s ease-out;
+	}
+	.avatar-link:hover .avatar,
+	.avatar-link:focus-visible .avatar {
+		box-shadow: 0 0 0 5px var(--avatar-ring);
+	}
+
+	/* Ring is Obsidian Grey in light mode — the same token the dark theme uses
+	   as its surface. It has to invert in dark mode, since an obsidian ring on
+	   an obsidian background would be invisible. */
+	.avatar-link {
+		--avatar-ring: rgba(var(--obsidian), 0.25);
+	}
+	@media (prefers-color-scheme: dark) {
+		.avatar-link {
+			--avatar-ring: rgba(var(--gray-dark), 0.35);
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.avatar {
+			transition: none;
+		}
 	}
 	nav {
 		display: flex;

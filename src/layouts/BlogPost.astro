@@ -6,10 +6,14 @@ import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 
 // pubDate is optional so non-post pages (eg. /about) can use this layout
-// without rendering a publication date.
-type Props = Omit<CollectionEntry<'blog'>['data'], 'pubDate'> & { pubDate?: Date };
+// without rendering a publication date. hideTitle keeps the title for <head>
+// and screen readers while dropping the visible heading.
+type Props = Omit<CollectionEntry<'blog'>['data'], 'pubDate'> & {
+	pubDate?: Date;
+	hideTitle?: boolean;
+};
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, hideTitle } = Astro.props;
 ---
 
 <html lang="en">
@@ -46,6 +50,16 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 			.title h1 {
 				margin: 0 0 0.5em 0;
 			}
+			/* With hideTitle the h1 is sr-only (zero height) and the <hr> is gone,
+			   so the .title box would still reserve ~3em of empty space above the
+			   content. Collapse it, and trim main's top padding to match. */
+			main.bare {
+				padding-top: 0.5em;
+			}
+			.title.bare {
+				margin-bottom: 0;
+				padding: 0;
+			}
 			.date {
 				margin-bottom: 0.5em;
 				color: rgb(var(--gray));
@@ -58,13 +72,13 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
 	<body>
 		<Header />
-		<main>
+		<main class:list={[{ bare: hideTitle }]}>
 			<article>
 				<div class="hero-image">
 					{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
 				</div>
 				<div class="prose">
-					<div class="title">
+					<div class:list={['title', { bare: hideTitle }]}>
 						{
 							pubDate && (
 								<div class="date">
@@ -79,8 +93,8 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 								</div>
 							)
 						}
-						<h1>{title}</h1>
-						<hr />
+						<h1 class:list={[{ 'sr-only': hideTitle }]}>{title}</h1>
+						{!hideTitle && <hr />}
 					</div>
 					<slot />
 				</div>
