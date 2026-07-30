@@ -14,9 +14,10 @@ import { SITE_DESCRIPTION } from "../consts";
     />
   </head>
   <body>
-    <!-- <Header /> -->
-    <main>
-      <h1>Niki Khomitsevych</h1>
+    <Header />
+    <div class="page">
+      <main>
+        <h1>Niki Khomitsevych</h1>
       <p>
         Software engineer with over 10 years of experience building and shipping
         products. These days I work across the stack on the web &mdash; React,
@@ -32,6 +33,8 @@ import { SITE_DESCRIPTION } from "../consts";
         in real time, and building encrypted offline-first storage that survives
         losing the network. One of those products was FDA-cleared.
       </p>
+      </main>
+      <aside class="sidecar">
       <p>
         Here is my <a href="/nkhomitsevych.resume.ios.pdf">iOS engineering resume</a>.
       </p>
@@ -54,7 +57,45 @@ import { SITE_DESCRIPTION } from "../consts";
           Telegram: <a href="https://t.me/hamsternik">@hamsternik</a>
         </li>
       </ul>
-    </main>
+      </aside>
+    </div>
     <!-- <Footer /> -->
   </body>
 </html>
+
+<style>
+  /* Below the breakpoint everything stacks: the sidecar simply follows the
+     main column, matching its width so the page reads as one column. */
+  .sidecar {
+    width: 720px;
+    max-width: calc(100% - 2em);
+    margin: 0 auto;
+    padding: 0 1em 3em;
+  }
+  .sidecar ul {
+    padding-left: 1.1em;
+  }
+
+  /* 720px main column + room for a sidecar on either side. Three columns with
+     equal 1fr gutters keep the main column optically centered on the page. */
+  @media (min-width: 1200px) {
+    .page {
+      display: grid;
+      grid-template-columns: 1fr 720px 1fr;
+      align-items: start;
+    }
+    .page > main {
+      grid-column: 2;
+    }
+    .sidecar {
+      grid-column: 3;
+      width: auto;
+      max-width: 18em;
+      margin: 0;
+      padding: 3em 1em 3em 2.5em;
+      font-size: 0.85em;
+      line-height: 1.6;
+      color: rgb(var(--gray));
+    }
+  }
+</style>
