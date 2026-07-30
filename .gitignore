@@ -7,7 +7,6 @@ dist/
 .DS_Store
 .vercel
 *.log
-package-lock.json
 .eslintcache
 
 # ignore top-level vscode settings
