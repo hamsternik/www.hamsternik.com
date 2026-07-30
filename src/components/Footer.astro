@@ -1,9 +1,16 @@
 ---
 ---
 
-<footer>
-	<div class="footer-links">
-		<a href="https://github.com/hamsternik/www.hamsternik.com" target="_blank" rel="noopener">
+<footer
+	class="bg-[linear-gradient(var(--gray-gradient))] bg-no-repeat px-4 pb-24 pt-8 text-center text-muted"
+>
+	<div class="text-[0.9em]">
+		<a
+			class="inline-flex items-center gap-1.5 text-muted hover:text-fg"
+			href="https://github.com/hamsternik/www.hamsternik.com"
+			target="_blank"
+			rel="noopener"
+		>
 			<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"
 				><path
 					fill="currentColor"
@@ -14,26 +21,3 @@
 		</a>
 	</div>
 </footer>
-<style>
-	footer {
-		padding: 2em 1em 6em 1em;
-		background: linear-gradient(var(--gray-gradient)) no-repeat;
-		color: rgb(var(--gray));
-		text-align: center;
-	}
-	.footer-links {
-		font-size: 0.9em;
-	}
-	/* inline-flex, not inline: Tailwind's preflight sets `svg { display: block }`,
-	   which would drop the label onto its own line. Flex also handles the icon's
-	   vertical centering without a vertical-align nudge. */
-	.footer-links a {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.4em;
-		color: rgb(var(--gray));
-	}
-	.footer-links a:hover {
-		color: rgb(var(--gray-dark));
-	}
-</style>

@@ -4,8 +4,12 @@ import HeaderLink from './HeaderLink.astro';
 import avatar from '../assets/avatar.png';
 ---
 
-<a class="skip-link" href="#main">Skip to content</a>
-<header>
+<!-- Off-screen until focused: not `hidden`, which would make it unfocusable. -->
+<a
+	class="absolute left-[-9999px] top-0 z-10 rounded-br border border-current bg-page px-4 py-2 text-accent focus:left-0"
+	href="#main">Skip to content</a
+>
+<header class="px-4 pt-8">
 	<a class="avatar-link" href="/about">
 		<Image
 			class="avatar"
@@ -16,34 +20,13 @@ import avatar from '../assets/avatar.png';
 			alt="About Niki Khomitsevych"
 		/>
 	</a>
-	<nav>
+	<nav class="flex flex-wrap justify-center gap-x-6 gap-y-1">
 		<HeaderLink href="/">Home</HeaderLink>
 		<HeaderLink href="/blog">Blog</HeaderLink>
 	</nav>
 </header>
 
 <style>
-	/* Off-screen until focused, so keyboard users can jump the nav without a
-	   visible control cluttering the page. Not display:none — that would make
-	   it unfocusable. */
-	.skip-link {
-		position: absolute;
-		left: -9999px;
-		top: 0;
-		z-index: 10;
-		padding: 0.5em 1em;
-		background: var(--page-bg);
-		color: var(--accent);
-		border: 1px solid currentColor;
-		border-radius: 0 0 4px 0;
-	}
-	.skip-link:focus {
-		left: 0;
-	}
-	header {
-		margin: 0;
-		padding: 2em 1em 0;
-	}
 	/* The link, not the image, carries the centering: an inline <a> would
 	   collapse to its content and margin:auto on the image would not center. */
 	.avatar-link {
@@ -81,19 +64,5 @@ import avatar from '../assets/avatar.png';
 		.avatar {
 			transition: none;
 		}
-	}
-	nav {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		column-gap: 1.5em;
-		row-gap: 0.25em;
-	}
-	nav :global(a) {
-		color: rgb(var(--gray-dark));
-	}
-	nav :global(a:hover),
-	nav :global(a.active) {
-		color: var(--accent);
 	}
 </style>

@@ -12,19 +12,13 @@ const isActive = href === pathname || href === '/' + subpath?.[0];
 
 <a
 	href={href}
-	class:list={[className, { active: isActive }]}
+	class:list={[
+		'inline-block no-underline hover:text-accent',
+		isActive ? 'font-bold underline text-accent' : 'text-fg',
+		className
+	]}
 	aria-current={isActive ? 'page' : undefined}
 	{...props}
 >
 	<slot />
 </a>
-<style>
-	a {
-		display: inline-block;
-		text-decoration: none;
-	}
-	a.active {
-		font-weight: bolder;
-		text-decoration: underline;
-	}
-</style>
