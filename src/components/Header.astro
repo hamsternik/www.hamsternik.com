@@ -4,6 +4,7 @@ import HeaderLink from './HeaderLink.astro';
 import avatar from '../assets/avatar.png';
 ---
 
+<a class="skip-link" href="#main">Skip to content</a>
 <header>
 	<a class="avatar-link" href="/about">
 		<Image
@@ -22,6 +23,23 @@ import avatar from '../assets/avatar.png';
 </header>
 
 <style>
+	/* Off-screen until focused, so keyboard users can jump the nav without a
+	   visible control cluttering the page. Not display:none — that would make
+	   it unfocusable. */
+	.skip-link {
+		position: absolute;
+		left: -9999px;
+		top: 0;
+		z-index: 10;
+		padding: 0.5em 1em;
+		background: var(--page-bg);
+		color: var(--accent);
+		border: 1px solid currentColor;
+		border-radius: 0 0 4px 0;
+	}
+	.skip-link:focus {
+		left: 0;
+	}
 	header {
 		margin: 0;
 		padding: 2em 1em 0;
